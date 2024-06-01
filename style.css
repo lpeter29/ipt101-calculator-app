@@ -200,12 +200,13 @@ body[color-theme="light"] #theme-toggle:hover {
         width: 90%;
     }
     .input, .num-btn {
-        width: 22%;
+        width: 20%;
         padding: 10px;
         margin: 2px;
     }
     .small-btn {
-        width: 30%;
+        width: 50px;
+        margin-left: -20px;
         padding: 5px;
         font-size: 0.7em;
     }
