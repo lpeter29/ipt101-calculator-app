@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container">
+        <button id="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
+        <h1>Calculator App</h1>
+        <div id="display-container">
+            <input type="text" id="result" value="" readonly>
+            <input type="button" value="C" class="input small-btn" onclick="clearInput()">
+            <input type="button" value="DEL" class="input small-btn" onclick="backspace()">
+        </div>
+        <div class="num-btn-container">
+            <input type="button" value="1" class="num-btn" onclick="appendNum(1)">
+            <input type="button" value="2" class="num-btn" onclick="appendNum(2)">
+            <input type="button" value="3" class="num-btn" onclick="appendNum(3)">
+            <input type="button" value="÷" class="num-btn" onclick="appendOperator('/')">
+        </div>
+        <div class="num-btn-container">
+            <input type="button" value="4" class="num-btn" onclick="appendNum(4)">
+            <input type="button" value="5" class="num-btn" onclick="appendNum(5)">
+            <input type="button" value="6" class="num-btn" onclick="appendNum(6)">
+            <input type="button" value="×" class="num-btn" onclick="appendOperator('*')">
+        </div>
+        <div class="num-btn-container">
+            <input type="button" value="7" class="num-btn" onclick="appendNum(7)">
+            <input type="button" value="8" class="num-btn" onclick="appendNum(8)">
+            <input type="button" value="9" class="num-btn" onclick="appendNum(9)">
+            <input type="button" value="−" class="num-btn" onclick="appendOperator('-')">
+        </div>
+        <div class="num-btn-container">
+            <input type="button" value="." class="num-btn" onclick="appendDot()">
+            <input type="button" value="0" class="num-btn" onclick="appendNum(0)">
+            <input type="button" value="=" class="num-btn" onclick="calculate()">
+            <input type="button" value="+" class="num-btn" onclick="appendOperator('+')">
+        </div>
+    </div>
+    <script>
+        let currentInput = '';
+
+        function appendNum(number) {
+            currentInput += number;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function appendOperator(operator) {
+            currentInput += operator;
+            document.getElementById("result").value = currentInput;
+        }
+
+        function calculate() {
+            try {
+                const result = eval(currentInput);
+                currentInput = result.toString();
+                document.getElementById("result").value = currentInput;
+            } catch {
+                document.getElementById("result").value = "Error";
+                currentInput = '';
+            }
+        }
+
+        function clearInput() {
+            currentInput = '';
+            document.getElementById("result").value = '';
+        }
+
+        function appendDot() {
+            currentInput += ".";
+            document.getElementById("result").value = currentInput;
+        }
+
+        function backspace() {
+            currentInput = currentInput.slice(0, -1);
+            document.getElementById("result").value = currentInput;
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('color-theme');
+            if (currentTheme === 'dark') {
+                body.setAttribute('color-theme', 'green');
+            } else if (currentTheme === 'green') {
+                body.setAttribute('color-theme', 'light');
+            } else if (currentTheme === 'light') {
+                body.removeAttribute('color-theme');
+            } else {
+                body.setAttribute('color-theme', 'dark');
+            }
+        }
+    </script>
+</body>
+</html>
